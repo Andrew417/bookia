@@ -3,6 +3,7 @@ import 'dart:developer';
 import 'package:bookia/core/services/api/api_endpoints.dart';
 import 'package:bookia/core/services/api/dio_provider.dart';
 import 'package:bookia/features/auth/data/models/request/auth_params.dart';
+import 'package:bookia/features/auth/data/models/request/otp_params.dart';
 import 'package:bookia/features/auth/data/models/response/auth_response/auth_response.dart';
 
 class AuthRepo {
@@ -47,11 +48,30 @@ class AuthRepo {
   static Future<AuthResponse?> forgetPassword(AuthParams params) async {
     try {
       var res = await DioProvider.post(
-        endpoint: ApiEndpoints.forgetPassword, 
+        endpoint: ApiEndpoints.forgetPassword,
         data: params.toJson(),
       );
 
-      if (res.statusCode == 200) { 
+      if (res.statusCode == 200) {
+        var data = AuthResponse.fromJson(res.data);
+        return data;
+      } else {
+        return null;
+      }
+    } on Exception catch (e) {
+      log(e.toString());
+      return null;
+    }
+  }
+
+  static Future<AuthResponse?> otpVerification(OtpVerifyParams params) async {
+    try {
+      var res = await DioProvider.post(
+        endpoint: ApiEndpoints.checkForgetPass,
+        data: params.toJson(),
+      );
+
+      if (res.statusCode == 200) {
         var data = AuthResponse.fromJson(res.data);
         return data;
       } else {

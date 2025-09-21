@@ -34,7 +34,7 @@ class _ForgetPasswordState extends State<ForgetPassword> {
 
   void _blocListener(BuildContext context, AuthState state) {
     if (state is AuthSuccessState) {
-      pushAndRemoveUntil(context, Routes.otpVerify);
+      pushTo(context, Routes.otpVerify);
     } else if (state is AuthErrorState) {
       pop(context);
       showMyDialog(context, state.error);

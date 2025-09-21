@@ -1,4 +1,5 @@
 import 'package:bookia/features/auth/data/models/request/auth_params.dart';
+import 'package:bookia/features/auth/data/models/request/otp_params.dart';
 import 'package:bookia/features/auth/data/repo/auth_repo.dart';
 import 'package:bookia/features/auth/presentation/cubit/auth_state.dart';
 import 'package:flutter/material.dart';
@@ -62,5 +63,20 @@ class AuthCubit extends Cubit<AuthState> {
     }
   }
 
-  
+  otpVerification(String pin) async {
+    emit(AuthLoadingState());
+
+    var params = OtpVerifyParams(
+      email: emailController.text,
+      otp: otpController.text,
+    );
+
+    var response = await AuthRepo.otpVerification(params);
+
+    if (response != null) {
+      emit(AuthSuccessState());
+    } else {
+      emit(AuthErrorState("Invalid or expired OTP"));
+    }
+  }
 }

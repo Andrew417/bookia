@@ -28,13 +28,13 @@ class _OtpVerificationState extends State<OtpVerification> {
         listener: _blocListener,
         child: _otpVerificationBody(),
       ),
-      bottomNavigationBar: _goToSignUp(context),
+      bottomNavigationBar: _resendOtp(context),
     );
   }
 
   void _blocListener(BuildContext context, AuthState state) {
     if (state is AuthSuccessState) {
-      pushAndRemoveUntil(context, Routes.createNewPass);
+      pushTo(context, Routes.createNewPass);
     } else if (state is AuthErrorState) {
       pop(context);
       showMyDialog(context, state.error);
@@ -61,8 +61,8 @@ class _OtpVerificationState extends State<OtpVerification> {
               ),
               Gap(30),
               Pinput(
-                length: 6, 
-                controller: cubit.otpController, // you need to add this TextEditingController in your cubit
+                length: 6,
+                controller: cubit.otpController,
                 defaultPinTheme: PinTheme(
                   width: 70,
                   height: 60,
@@ -92,8 +92,7 @@ class _OtpVerificationState extends State<OtpVerification> {
                 ),
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 onCompleted: (pin) {
-                  // automatically triggered when user fills all 4 digits
-                  // cubit.verifyOtp(pin);
+                  context.read<AuthCubit>().otpVerification(pin);
                 },
               ),
 
@@ -113,7 +112,7 @@ class _OtpVerificationState extends State<OtpVerification> {
     );
   }
 
-  SafeArea _goToSignUp(BuildContext context) {
+  SafeArea _resendOtp(BuildContext context) {
     return SafeArea(
       child: Row(
         mainAxisAlignment: MainAxisAlignment.center,
