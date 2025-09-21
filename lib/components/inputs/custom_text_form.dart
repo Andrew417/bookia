@@ -25,7 +25,7 @@ class _CustomTextFieldState extends State<CustomTextField> {
   @override
   Widget build(BuildContext context) {
     return TextFormField(
-      //controller: widget.controller,
+      controller: widget.controller,
       obscureText: widget.isPassword && isObscure,
       decoration: InputDecoration(
         hintText: widget.hintText,

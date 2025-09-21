@@ -1,11 +1,14 @@
+import 'package:bookia/components/appBar/app_bar_with_back.dart';
 import 'package:bookia/components/buttons/main_button.dart';
 import 'package:bookia/components/inputs/custom_text_form.dart';
 import 'package:bookia/core/constants/app_images.dart';
+import 'package:bookia/core/extensions/dialogs.dart';
 import 'package:bookia/core/routes/navigation.dart';
 import 'package:bookia/core/routes/routes.dart';
 import 'package:bookia/core/utils/app_colors.dart';
 import 'package:bookia/core/utils/text_styles.dart';
 import 'package:bookia/features/auth/presentation/cubit/auth_cubit.dart';
+import 'package:bookia/features/auth/presentation/cubit/auth_state.dart';
 import 'package:bookia/features/auth/presentation/widgets/social_button.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -22,20 +25,24 @@ class _RegisterScreenState extends State<RegisterScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        centerTitle: false,
-        automaticallyImplyLeading: false,
-        title: GestureDetector(
-          onTap: () {
-            pop(context);
-          },
-          child: Image.asset(AppImages.back, width: 41, height: 41),
-        ),
+      appBar: AppBarWithBack(),
+      body: BlocListener<AuthCubit, AuthState>(
+        listener: _blocListener,
+        child: _signupBody(),
       ),
-      body: _signupBody(),
-
       bottomNavigationBar: _goToSignIn(context),
     );
+  }
+
+  void _blocListener(BuildContext context, AuthState state) {
+    if (state is AuthSuccessState) {
+      pushAndRemoveUntil(context, Routes.main);
+    } else if (state is AuthErrorState) {
+      pop(context);
+      showMyDialog(context, state.error);
+    } else {
+      showLoadingDialog(context);
+    }
   }
 
   Padding _signupBody() {
