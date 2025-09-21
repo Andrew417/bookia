@@ -22,18 +22,20 @@ class OtpVerification extends StatefulWidget {
 class _OtpVerificationState extends State<OtpVerification> {
   @override
   Widget build(BuildContext context) {
+    var cubit = context.read<AuthCubit>();
     return Scaffold(
       appBar: AppBarWithBack(),
       body: BlocListener<AuthCubit, AuthState>(
         listener: _blocListener,
-        child: _otpVerificationBody(),
+        child: _otpVerificationBody(cubit),
       ),
-      bottomNavigationBar: _resendOtp(context),
+      bottomNavigationBar: _resendOtp(context, cubit),
     );
   }
 
   void _blocListener(BuildContext context, AuthState state) {
     if (state is AuthSuccessState) {
+      pop(context);
       pushTo(context, Routes.createNewPass);
     } else if (state is AuthErrorState) {
       pop(context);
@@ -43,8 +45,7 @@ class _OtpVerificationState extends State<OtpVerification> {
     }
   }
 
-  Padding _otpVerificationBody() {
-    var cubit = context.read<AuthCubit>();
+  Padding _otpVerificationBody(cubit) {
     return Padding(
       padding: const EdgeInsets.all(22),
       child: SingleChildScrollView(
@@ -92,16 +93,15 @@ class _OtpVerificationState extends State<OtpVerification> {
                 ),
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 onCompleted: (pin) {
-                  context.read<AuthCubit>().otpVerification(pin);
+                  print("Entered OTP: $pin");
                 },
               ),
-
               Gap(38),
               MainButton(
                 text: 'Verify',
                 onPressed: () {
                   if (cubit.formKey.currentState!.validate()) {
-                    pushTo(context, Routes.createNewPass);
+                    cubit.otpVerification();
                   }
                 },
               ),
@@ -112,14 +112,16 @@ class _OtpVerificationState extends State<OtpVerification> {
     );
   }
 
-  SafeArea _resendOtp(BuildContext context) {
+  SafeArea _resendOtp(BuildContext context, Cubit cubit) {
     return SafeArea(
       child: Row(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
           Text("Ddidn't receive code ?", style: TextStyles.getSize16()),
           TextButton(
-            onPressed: () {},
+            onPressed: () {
+              //cubit.otpVerification();
+            }, // comment
             child: Text(
               'Resend',
               style: TextStyles.getSize16(color: AppColors.primary),

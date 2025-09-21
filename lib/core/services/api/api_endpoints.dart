@@ -5,6 +5,7 @@ class ApiEndpoints {
   static const String register = '/register';
   static const String forgetPassword = '/forget-password';
   static const String checkForgetPass = '/check-forget-password';
+  static const String resetPassword = '/reset-password';
 
   static const String productsBestSeller = '/products-bestseller';
   static const String productsNewArrival = '/products-new-arrivals';

@@ -4,6 +4,7 @@ import 'package:bookia/features/auth/presentation/pages/forget_password.dart';
 import 'package:bookia/features/auth/presentation/pages/login.dart';
 import 'package:bookia/features/auth/presentation/pages/otp_verification.dart';
 import 'package:bookia/features/auth/presentation/pages/register.dart';
+import 'package:bookia/features/auth/presentation/pages/success_page.dart';
 import 'package:bookia/features/home/presentation/pages/main_screen.dart';
 import 'package:bookia/features/splash/splash_screen.dart';
 import 'package:bookia/features/welcome/welcome_screen.dart';
@@ -19,6 +20,7 @@ class Routes {
   static const String forgetPassword = '/forgetPassword';
   static const String otpVerify = '/otpVerify';
   static const String createNewPass = '/createNewPass';
+  static const String successPage = '/successPage';
 
   static final routes = GoRouter(
     routes: [
@@ -59,7 +61,7 @@ class Routes {
           child: CreateNewPass(),
         ),
       ),
-
+      GoRoute(path: successPage, builder: (context, state) => SuccessPage()),
       GoRoute(path: main, builder: (context, state) => MainScreen()),
     ],
   );

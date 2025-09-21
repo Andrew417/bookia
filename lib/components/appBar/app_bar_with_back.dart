@@ -16,7 +16,7 @@ class AppBarWithBack extends StatelessWidget implements PreferredSizeWidget {
         onTap: () {
           pop(context);
         },
-        child: Image.asset(AppImages.back, width: 41, height: 41),
+        child: Image.asset(AppImages.back, width: 41, height: 41), // comment
       ),
       actions: [actionWidget ?? const SizedBox()],
     );

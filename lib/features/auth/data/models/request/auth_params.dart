@@ -12,6 +12,7 @@ class AuthParams {
       "email": email,
       "password": password,
       "password_confirmation": passwordConfirmation,
+      
     };
   }
 }

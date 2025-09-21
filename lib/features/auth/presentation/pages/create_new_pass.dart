@@ -1,11 +1,13 @@
 import 'package:bookia/components/appBar/app_bar_with_back.dart';
 import 'package:bookia/components/buttons/main_button.dart';
 import 'package:bookia/components/inputs/custom_text_form.dart';
+import 'package:bookia/core/extensions/dialogs.dart';
 import 'package:bookia/core/routes/navigation.dart';
 import 'package:bookia/core/routes/routes.dart';
 import 'package:bookia/core/utils/app_colors.dart';
 import 'package:bookia/core/utils/text_styles.dart';
 import 'package:bookia/features/auth/presentation/cubit/auth_cubit.dart';
+import 'package:bookia/features/auth/presentation/cubit/auth_state.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:gap/gap.dart';
@@ -20,7 +22,24 @@ class CreateNewPass extends StatefulWidget {
 class _CreateNewPassState extends State<CreateNewPass> {
   @override
   Widget build(BuildContext context) {
-    return Scaffold(appBar: AppBarWithBack(), body: _createNewPassBody());
+    return Scaffold(
+      appBar: AppBarWithBack(),
+      body: BlocListener<AuthCubit, AuthState>(
+        listener: _blocListener,
+        child: _createNewPassBody(),
+      ),
+    );
+  }
+
+  void _blocListener(BuildContext context, AuthState state) {
+    if (state is AuthSuccessState) {
+      pushAndRemoveUntil(context, Routes.successPage);
+    } else if (state is AuthErrorState) {
+      pop(context);
+      showMyDialog(context, state.error);
+    } else {
+      showLoadingDialog(context);
+    }
   }
 
   Padding _createNewPassBody() {
@@ -41,7 +60,7 @@ class _CreateNewPassState extends State<CreateNewPass> {
               ),
               Gap(30),
               CustomTextField(
-                controller: cubit.emailController,
+                controller: cubit.passwordController,
                 hintText: 'New Password',
                 validator: (value) {
                   if (value == null || value.isEmpty) {
@@ -52,7 +71,7 @@ class _CreateNewPassState extends State<CreateNewPass> {
               ),
               Gap(15),
               CustomTextField(
-                controller: cubit.emailController,
+                controller: cubit.passwordConfirmationController,
                 hintText: 'Confirm Password',
                 validator: (value) {
                   if (value == null || value.isEmpty) {
@@ -66,7 +85,8 @@ class _CreateNewPassState extends State<CreateNewPass> {
                 text: 'Reset Password',
                 onPressed: () {
                   if (cubit.formKey.currentState!.validate()) {
-                    pushTo(context, Routes.otpVerify);
+                    // cubit.resetPassword();
+                    pushAndRemoveUntil(context, Routes.successPage);
                   }
                 },
               ),

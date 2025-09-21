@@ -50,8 +50,6 @@ class AuthCubit extends Cubit<AuthState> {
   }
 
   forgetPassword() async {
-    emit(AuthLoadingState());
-
     var params = AuthParams(email: emailController.text);
 
     var response = await AuthRepo.forgetPassword(params);
@@ -63,12 +61,12 @@ class AuthCubit extends Cubit<AuthState> {
     }
   }
 
-  otpVerification(String pin) async {
+  otpVerification() async {
     emit(AuthLoadingState());
 
     var params = OtpVerifyParams(
       email: emailController.text,
-      otp: otpController.text,
+      otp: int.parse(otpController.text),
     );
 
     var response = await AuthRepo.otpVerification(params);
@@ -77,6 +75,24 @@ class AuthCubit extends Cubit<AuthState> {
       emit(AuthSuccessState());
     } else {
       emit(AuthErrorState("Invalid or expired OTP"));
+    }
+  }
+
+  resetPassword() async {
+    emit(AuthLoadingState());
+
+    var params = AuthParams(
+      // otp: 
+      password: passwordController.text,
+      passwordConfirmation: passwordConfirmationController.text,
+    );
+
+    var response = await AuthRepo.createNewPass(params);
+
+    if (response != null) {
+      emit(AuthSuccessState());
+    } else {
+      emit(AuthErrorState("Error in resetting password"));
     }
   }
 }

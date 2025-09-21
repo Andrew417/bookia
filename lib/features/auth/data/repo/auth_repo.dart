@@ -82,4 +82,23 @@ class AuthRepo {
       return null;
     }
   }
+
+  static Future<AuthResponse?> createNewPass(AuthParams params) async {
+    try {
+      var res = await DioProvider.put(
+        endpoint: ApiEndpoints.resetPassword,
+        data: params.toJson(),
+      );
+
+      if (res.statusCode == 201) {
+        var data = AuthResponse.fromJson(res.data);
+        return data;
+      } else {
+        return null;
+      }
+    } on Exception catch (e) {
+      log(e.toString());
+      return null;
+    }
+  }
 }
