@@ -12,6 +12,7 @@ class AuthCubit extends Cubit<AuthState> {
   var emailController = TextEditingController();
   var passwordController = TextEditingController();
   var passwordConfirmationController = TextEditingController();
+  var otpController = TextEditingController();
 
   login() async {
     emit(AuthLoadingState());
@@ -46,4 +47,20 @@ class AuthCubit extends Cubit<AuthState> {
       emit(AuthErrorState("Registration failed"));
     }
   }
+
+  forgetPassword() async {
+    emit(AuthLoadingState());
+
+    var params = AuthParams(email: emailController.text);
+
+    var response = await AuthRepo.forgetPassword(params);
+
+    if (response != null) {
+      emit(AuthSuccessState());
+    } else {
+      emit(AuthErrorState("Failed to send reset code"));
+    }
+  }
+
+  
 }

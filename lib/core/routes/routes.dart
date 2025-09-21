@@ -1,5 +1,8 @@
 import 'package:bookia/features/auth/presentation/cubit/auth_cubit.dart';
+import 'package:bookia/features/auth/presentation/pages/create_new_pass.dart';
+import 'package:bookia/features/auth/presentation/pages/forget_password.dart';
 import 'package:bookia/features/auth/presentation/pages/login.dart';
+import 'package:bookia/features/auth/presentation/pages/otp_verification.dart';
 import 'package:bookia/features/auth/presentation/pages/register.dart';
 import 'package:bookia/features/home/presentation/pages/main_screen.dart';
 import 'package:bookia/features/splash/splash_screen.dart';
@@ -13,6 +16,9 @@ class Routes {
   static const String login = '/login';
   static const String register = '/register';
   static const String main = '/main';
+  static const String forgetPassword = '/forgetPassword';
+  static const String otpVerify = '/otpVerify';
+  static const String createNewPass = '/createNewPass';
 
   static final routes = GoRouter(
     routes: [
@@ -32,6 +38,28 @@ class Routes {
           child: RegisterScreen(),
         ),
       ),
+      GoRoute(
+        path: forgetPassword,
+        builder: (context, state) => BlocProvider(
+          create: (context) => AuthCubit(),
+          child: ForgetPassword(),
+        ),
+      ),
+      GoRoute(
+        path: otpVerify,
+        builder: (context, state) => BlocProvider(
+          create: (context) => AuthCubit(),
+          child: OtpVerification(),
+        ),
+      ),
+      GoRoute(
+        path: createNewPass,
+        builder: (context, state) => BlocProvider(
+          create: (context) => AuthCubit(),
+          child: CreateNewPass(),
+        ),
+      ),
+
       GoRoute(path: main, builder: (context, state) => MainScreen()),
     ],
   );

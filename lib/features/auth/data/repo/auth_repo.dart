@@ -43,4 +43,23 @@ class AuthRepo {
       return null;
     }
   }
+
+  static Future<AuthResponse?> forgetPassword(AuthParams params) async {
+    try {
+      var res = await DioProvider.post(
+        endpoint: ApiEndpoints.forgetPassword, 
+        data: params.toJson(),
+      );
+
+      if (res.statusCode == 200) { 
+        var data = AuthResponse.fromJson(res.data);
+        return data;
+      } else {
+        return null;
+      }
+    } on Exception catch (e) {
+      log(e.toString());
+      return null;
+    }
+  }
 }
