@@ -1,3 +1,4 @@
+import 'package:bookia/core/utils/app_colors.dart';
 import 'package:flutter/material.dart';
 
 class TextStyles {
@@ -30,7 +31,7 @@ class TextStyles {
     double? fontSize,
     FontWeight? fontWeight,
   }) {
-    return TextStyle(fontSize: fontSize ?? 18, color: color);
+    return TextStyle(fontSize: fontSize ?? 18, color: color ?? AppColors.dark);
   }
 
   static TextStyle getSize16({
