@@ -1,5 +1,6 @@
 import 'package:bookia/features/auth/data/models/request/auth_params.dart';
 import 'package:bookia/features/auth/data/models/request/otp_params.dart';
+import 'package:bookia/features/auth/data/models/request/reset_pass.dart';
 import 'package:bookia/features/auth/data/repo/auth_repo.dart';
 import 'package:bookia/features/auth/presentation/cubit/auth_state.dart';
 import 'package:flutter/material.dart';
@@ -81,10 +82,10 @@ class AuthCubit extends Cubit<AuthState> {
   resetPassword() async {
     emit(AuthLoadingState());
 
-    var params = AuthParams(
-      // otp: 
-      password: passwordController.text,
-      passwordConfirmation: passwordConfirmationController.text,
+    var params = ResetPasswordParams(
+      verifyCode: int.parse(otpController.text),
+      newPassword: passwordController.text,
+      newPasswordConfirmation: passwordConfirmationController.text,
     );
 
     var response = await AuthRepo.createNewPass(params);

@@ -58,7 +58,9 @@ class Routes {
         path: createNewPass,
         builder: (context, state) => BlocProvider(
           create: (context) => AuthCubit(),
-          child: CreateNewPass(),
+          child: CreateNewPass(
+            otp: state.extra as String, 
+          ),
         ),
       ),
       GoRoute(path: successPage, builder: (context, state) => SuccessPage()),

@@ -34,9 +34,10 @@ class _OtpVerificationState extends State<OtpVerification> {
   }
 
   void _blocListener(BuildContext context, AuthState state) {
+    var cubit = context.read<AuthCubit>();
     if (state is AuthSuccessState) {
       pop(context);
-      pushTo(context, Routes.createNewPass);
+      pushTo(context, Routes.createNewPass, cubit.otpController.text);
     } else if (state is AuthErrorState) {
       pop(context);
       showMyDialog(context, state.error);
@@ -92,9 +93,7 @@ class _OtpVerificationState extends State<OtpVerification> {
                   ),
                 ),
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                onCompleted: (pin) {
-                  print("Entered OTP: $pin");
-                },
+                onCompleted: (pin) {},
               ),
               Gap(38),
               MainButton(

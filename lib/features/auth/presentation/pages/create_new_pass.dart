@@ -13,13 +13,21 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:gap/gap.dart';
 
 class CreateNewPass extends StatefulWidget {
-  const CreateNewPass({super.key});
+  final String otp;
+  const CreateNewPass({super.key, required this.otp});
 
   @override
   State<CreateNewPass> createState() => _CreateNewPassState();
 }
 
 class _CreateNewPassState extends State<CreateNewPass> {
+  @override
+  void initState() {
+    super.initState();
+    final cubit = context.read<AuthCubit>();
+    cubit.otpController.text = widget.otp;
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -74,8 +82,11 @@ class _CreateNewPassState extends State<CreateNewPass> {
                 controller: cubit.passwordConfirmationController,
                 hintText: 'Confirm Password',
                 validator: (value) {
-                  if (value == null || value.isEmpty) {
+                  if ((value == null || value.isEmpty)) {
                     return 'Please confirm your new password';
+                  } else if (cubit.passwordConfirmationController.text !=
+                      cubit.passwordController.text) {
+                    return 'Passwords don\'t match';
                   }
                   return null;
                 },
@@ -85,8 +96,7 @@ class _CreateNewPassState extends State<CreateNewPass> {
                 text: 'Reset Password',
                 onPressed: () {
                   if (cubit.formKey.currentState!.validate()) {
-                    // cubit.resetPassword();
-                    pushAndRemoveUntil(context, Routes.successPage);
+                    cubit.resetPassword();
                   }
                 },
               ),
