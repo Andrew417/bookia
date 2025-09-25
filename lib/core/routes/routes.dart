@@ -5,7 +5,7 @@ import 'package:bookia/features/auth/presentation/pages/login.dart';
 import 'package:bookia/features/auth/presentation/pages/otp_verification.dart';
 import 'package:bookia/features/auth/presentation/pages/register.dart';
 import 'package:bookia/features/auth/presentation/pages/success_page.dart';
-import 'package:bookia/features/home/presentation/pages/main_screen.dart';
+import 'package:bookia/features/main/presentation/pages/main_screen.dart';
 import 'package:bookia/features/splash/splash_screen.dart';
 import 'package:bookia/features/welcome/welcome_screen.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -62,7 +62,7 @@ class Routes {
         ),
       ),
       GoRoute(path: successPage, builder: (context, state) => SuccessPage()),
-      GoRoute(path: main, builder: (context, state) => HomeScreen()),
+      GoRoute(path: main, builder: (context, state) => MainScreen()),
     ],
   );
 }

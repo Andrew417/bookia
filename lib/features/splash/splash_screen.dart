@@ -19,7 +19,6 @@ class _SplashScreenState extends State<SplashScreen> {
   void initState() {
     Future.delayed(const Duration(seconds: 3), () {
       var userData = LocalHelper.getUserData();
-      print("UserData fetched in splash: $userData");
       if (userData != null) {
         pushWithReplacement(context, Routes.main);
       } else {
