@@ -1,4 +1,5 @@
 import 'package:bookia/core/constants/app_images.dart';
+import 'package:bookia/features/main/presentation/widgets/home_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
@@ -19,6 +20,7 @@ class HomeScreen extends StatelessWidget {
           ),
         ],
       ),
+      body: Padding(padding: const EdgeInsets.all(12), child: HomeSlider()),
     );
   }
 }
