@@ -10,5 +10,5 @@ class AppColors {
   static const Color darkGrey = Color(0xFF6A707C);
   static const Color white = Color(0xFFFFFFFF);
   static const Color cardColor = Color(0xFFF5EFE1);
-
+  static const Color buttonAdd = Color(0xFFE0E0E0);
 }

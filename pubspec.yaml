@@ -60,3 +60,10 @@ flutter:
     - family: DMSerifDisplay
       fonts:
         - asset: assets/fonts/DMSerifDisplay-Regular.ttf
+    - family: NunitoSans
+      fonts:
+        - asset: assets/fonts/nunito-sans.regular.ttf
+
+    - family: NunitoSansBold
+      fonts:
+        - asset: assets/fonts/nunito-sans.bold.ttf

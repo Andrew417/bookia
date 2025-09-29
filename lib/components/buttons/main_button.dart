@@ -37,7 +37,7 @@ class MainButton extends StatelessWidget {
           ),
         ),
         onPressed: onPressed,
-        child: Text(text, style: TextStyles.getSize16(color: textColor)),
+        child: Text(text, style: TextStyles.getSize18(color: textColor)),
       ),
     );
   }

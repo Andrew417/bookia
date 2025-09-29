@@ -40,8 +40,14 @@ class TextStyles {
     Color? color,
     double? fontSize,
     FontWeight? fontWeight,
+    String? fontFamily,
   }) {
-    return TextStyle(fontSize: fontSize ?? 18, color: color ?? AppColors.dark);
+    return TextStyle(
+      fontSize: fontSize ?? 18,
+      color: color ?? AppColors.dark,
+      fontFamily: fontFamily,
+      fontWeight: fontWeight,
+    );
   }
 
   static TextStyle getSize16({
