@@ -8,6 +8,7 @@ import 'package:bookia/features/auth/presentation/pages/success_page.dart';
 import 'package:bookia/features/book_description_screen.dart';
 import 'package:bookia/features/main/presentation/pages/main_screen.dart';
 import 'package:bookia/features/main/presentation/pages/order_screen.dart';
+import 'package:bookia/features/main/presentation/pages/success_page.dart';
 import 'package:bookia/features/main/presentation/pages/wishlist_screen.dart';
 import 'package:bookia/features/splash/splash_screen.dart';
 import 'package:bookia/features/welcome/welcome_screen.dart';
@@ -27,6 +28,7 @@ class Routes {
   static const String bookDescription = '/bookDescription';
   static const String wishList = '/wishList';
   static const String orderScreen = '/orderScreen';
+  static const String sucessOrder = '/sucessOrder';
 
   static final routes = GoRouter(
     routes: [
@@ -75,6 +77,10 @@ class Routes {
       ),
       GoRoute(path: wishList, builder: (context, state) => WishlistScreen()),
       GoRoute(path: orderScreen, builder: (context, state) => OrderScreen()),
+      GoRoute(
+        path: sucessOrder,
+        builder: (context, state) => SuccessPageOrder(),
+      ),
     ],
   );
 }

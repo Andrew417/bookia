@@ -69,7 +69,7 @@ class OrderScreen extends StatelessWidget {
               text: "Submit Order ",
               borderRadius: 8,
               onPressed: () {
-                pushTo(context, Routes.orderScreen);
+                pushTo(context, Routes.sucessOrder);
               },
             ),
           ],
