@@ -6,8 +6,13 @@ class TextStyles {
     Color? color,
     double? fontSize,
     FontWeight? fontWeight,
+    String? fontFamily,
   }) {
-    return TextStyle(fontSize: fontSize ?? 30, color: color);
+    return TextStyle(
+      fontSize: fontSize ?? 30,
+      color: color,
+      fontFamily: fontFamily,
+    );
   }
 
   static TextStyle getSize26({
@@ -22,8 +27,13 @@ class TextStyles {
     Color? color,
     double? fontSize,
     FontWeight? fontWeight,
+    String? fontFamily,
   }) {
-    return TextStyle(fontSize: fontSize ?? 24, color: color);
+    return TextStyle(
+      fontSize: fontSize ?? 24,
+      color: color,
+      fontFamily: fontFamily,
+    );
   }
 
   static TextStyle getSize18({

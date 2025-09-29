@@ -9,5 +9,6 @@ class AppColors {
   static const Color accent = Color(0xFFF7F8F9);
   static const Color darkGrey = Color(0xFF6A707C);
   static const Color white = Color(0xFFFFFFFF);
+  static const Color cardColor = Color(0xFFF5EFE1);
 
 }

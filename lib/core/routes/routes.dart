@@ -5,7 +5,9 @@ import 'package:bookia/features/auth/presentation/pages/login.dart';
 import 'package:bookia/features/auth/presentation/pages/otp_verification.dart';
 import 'package:bookia/features/auth/presentation/pages/register.dart';
 import 'package:bookia/features/auth/presentation/pages/success_page.dart';
+import 'package:bookia/features/book_description_screen.dart';
 import 'package:bookia/features/main/presentation/pages/main_screen.dart';
+import 'package:bookia/features/main/presentation/pages/wishlist_screen.dart';
 import 'package:bookia/features/splash/splash_screen.dart';
 import 'package:bookia/features/welcome/welcome_screen.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -21,6 +23,8 @@ class Routes {
   static const String otpVerify = '/otpVerify';
   static const String createNewPass = '/createNewPass';
   static const String successPage = '/successPage';
+  static const String bookDescription = '/bookDescription';
+  static const String wishList = '/wishList';
 
   static final routes = GoRouter(
     routes: [
@@ -63,6 +67,11 @@ class Routes {
       ),
       GoRoute(path: successPage, builder: (context, state) => SuccessPage()),
       GoRoute(path: main, builder: (context, state) => MainScreen()),
+      GoRoute(
+        path: bookDescription,
+        builder: (context, state) => BookDescriptionScreen(),
+      ),
+      GoRoute(path: wishList, builder: (context, state) => WishlistScreen()),
     ],
   );
 }

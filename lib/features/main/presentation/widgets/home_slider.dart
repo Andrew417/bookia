@@ -53,6 +53,7 @@ class _HomeSliderState extends State<HomeSlider> {
         height: 150,
         aspectRatio: 1,
         initialPage: 0,
+        pauseAutoPlayOnTouch: true,
         viewportFraction: 1,
         enlargeCenterPage: true,
         autoPlay: true,

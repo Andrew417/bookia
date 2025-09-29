@@ -12,10 +12,12 @@ class MainButton extends StatelessWidget {
     this.bgColor = AppColors.primary,
     this.textColor = AppColors.white,
     this.borderColor,
+    this.borderRadius,
   });
   final String text;
   final double width;
   final double height;
+  final double? borderRadius;
   final Function() onPressed;
   final Color bgColor;
   final Color textColor;
@@ -31,7 +33,7 @@ class MainButton extends StatelessWidget {
           backgroundColor: bgColor,
           shape: RoundedRectangleBorder(
             side: BorderSide(color: borderColor ?? Colors.transparent),
-            borderRadius: BorderRadius.circular(10),
+            borderRadius: BorderRadius.circular(borderRadius ?? 10),
           ),
         ),
         onPressed: onPressed,

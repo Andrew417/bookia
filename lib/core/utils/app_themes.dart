@@ -10,7 +10,10 @@ class AppThemes {
       backgroundColor: AppColors.white,
       foregroundColor: AppColors.primary,
       surfaceTintColor: Colors.transparent,
-      titleTextStyle: TextStyles.getSize24(color: AppColors.primary),
+      titleTextStyle: TextStyles.getSize24(
+        color: AppColors.dark,
+        fontFamily: AppFonts.dMSerifDisplayFont,
+      ),
     ),
     fontFamily: AppFonts.dMSerifDisplayFont,
     colorScheme: ColorScheme.fromSeed(
