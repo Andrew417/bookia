@@ -6,12 +6,18 @@ import 'package:bookia/core/routes/navigation.dart';
 import 'package:bookia/core/routes/routes.dart';
 import 'package:bookia/core/utils/app_colors.dart';
 import 'package:bookia/core/utils/text_styles.dart';
+import 'package:bookia/features/mycart/presentation/pages/gov_bottomSheet.dart';
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 
-class OrderScreen extends StatelessWidget {
-  OrderScreen({super.key});
+class OrderScreen extends StatefulWidget {
+  const OrderScreen({super.key});
 
+  @override
+  State<OrderScreen> createState() => _OrderScreenState();
+}
+
+class _OrderScreenState extends State<OrderScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -82,7 +88,6 @@ class OrderScreen extends StatelessWidget {
   final TextEditingController email = TextEditingController();
   final TextEditingController address = TextEditingController();
   final TextEditingController phone = TextEditingController();
-  final TextEditingController governorate = TextEditingController();
 
   Padding _orderBody() {
     return Padding(
@@ -145,17 +150,7 @@ class OrderScreen extends StatelessWidget {
                 },
               ),
               Gap(20),
-
-              CustomTextField(
-                controller: governorate,
-                hintText: 'governorate',
-                validator: (value) {
-                  if (value == null || value.isEmpty) {
-                    return 'Please enter your governorate';
-                  }
-                  return null;
-                },
-              ),
+              GovBottomsheet(),
 
               Gap(30),
             ],
