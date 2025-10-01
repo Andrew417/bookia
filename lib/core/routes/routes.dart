@@ -9,9 +9,11 @@ import 'package:bookia/features/main/presentation/pages/book_description_screen.
 import 'package:bookia/features/main/presentation/pages/main_screen.dart';
 import 'package:bookia/features/mycart/presentation/pages/order_screen.dart';
 import 'package:bookia/features/mycart/presentation/pages/success_page.dart';
-import 'package:bookia/features/wishlist/presentation/pages/wishlist_screen.dart';
+import 'package:bookia/features/profile/presentation/pages/edit_password.dart';
+import 'package:bookia/features/profile/presentation/pages/edit_profile.dart';
 import 'package:bookia/features/splash/splash_screen.dart';
 import 'package:bookia/features/welcome/welcome_screen.dart';
+import 'package:bookia/features/wishlist/presentation/pages/wishlist_screen.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 
@@ -29,6 +31,8 @@ class Routes {
   static const String wishList = '/wishList';
   static const String orderScreen = '/orderScreen';
   static const String sucessOrder = '/sucessOrder';
+  static const String editProfile = '/editProfile';
+  static const String editPassword = '/editPassword';
 
   static final routes = GoRouter(
     routes: [
@@ -81,6 +85,8 @@ class Routes {
         path: sucessOrder,
         builder: (context, state) => SuccessPageOrder(),
       ),
+      GoRoute(path: editProfile, builder: (context, state) => EditProfile()),
+      GoRoute(path: editPassword, builder: (context, state) => EditPassword()),
     ],
   );
 }

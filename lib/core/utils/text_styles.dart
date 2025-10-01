@@ -36,6 +36,20 @@ class TextStyles {
     );
   }
 
+  static TextStyle getSize20({
+    Color? color,
+    double? fontSize,
+    FontWeight? fontWeight,
+    String? fontFamily,
+  }) {
+    return TextStyle(
+      fontSize: fontSize ?? 20,
+      color: color ?? AppColors.dark,
+      fontFamily: fontFamily,
+      fontWeight: fontWeight,
+    );
+  }
+
   static TextStyle getSize18({
     Color? color,
     double? fontSize,

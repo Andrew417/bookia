@@ -16,4 +16,6 @@ class AppImages {
   static const String cartSvg = 'assets/images/cart.svg';
   static const String homeSvg = 'assets/images/Home.svg';
   static const String searchSvg = 'assets/icons/search_normal.svg';
+
+  static const String cameraSvg = 'assets/icons/cameraSvgsvg.svg';
 }
