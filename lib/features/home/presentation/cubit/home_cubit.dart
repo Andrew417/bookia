@@ -1,11 +1,11 @@
 import 'dart:developer';
 
-import 'package:bookia/features/main/data/models/book_product_response/book_product_response.dart';
-import 'package:bookia/features/main/data/models/book_product_response/product.dart';
-import 'package:bookia/features/main/data/models/slides_response/slider.dart';
-import 'package:bookia/features/main/data/models/slides_response/slides_response.dart';
-import 'package:bookia/features/main/data/repo/home_repo.dart';
-import 'package:bookia/features/main/presentation/cubit/home_states.dart';
+import 'package:bookia/features/home/data/models/book_product_response/book_product_response.dart';
+import 'package:bookia/features/home/data/models/book_product_response/product.dart';
+import 'package:bookia/features/home/data/models/slides_response/slider.dart';
+import 'package:bookia/features/home/data/models/slides_response/slides_response.dart';
+import 'package:bookia/features/home/data/repo/home_repo.dart';
+import 'package:bookia/features/home/presentation/cubit/home_states.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 class HomeCubit extends Cubit<HomeStates> {

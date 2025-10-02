@@ -2,8 +2,8 @@ import 'dart:developer';
 
 import 'package:bookia/core/services/api/api_endpoints.dart';
 import 'package:bookia/core/services/api/dio_provider.dart';
-import 'package:bookia/features/main/data/models/book_product_response/book_product_response.dart';
-import 'package:bookia/features/main/data/models/slides_response/slides_response.dart';
+import 'package:bookia/features/home/data/models/book_product_response/book_product_response.dart';
+import 'package:bookia/features/home/data/models/slides_response/slides_response.dart';
 
 class HomeRepo {
   static Future<SlidesResponse?> getSliders() async {

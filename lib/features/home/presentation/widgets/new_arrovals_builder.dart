@@ -1,12 +1,12 @@
 import 'package:bookia/core/utils/app_colors.dart';
 import 'package:bookia/core/utils/text_styles.dart';
-import 'package:bookia/features/main/data/models/book_product_response/product.dart';
-import 'package:bookia/features/main/presentation/home/widgets/book_card_UI.dart';
+import 'package:bookia/features/home/data/models/book_product_response/product.dart';
+import 'package:bookia/features/home/presentation/widgets/book_card_UI.dart';
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 
-class BestSellerBuilder extends StatelessWidget {
-  const BestSellerBuilder({super.key, required this.products});
+class NewArrivalsBuilder extends StatelessWidget {
+  const NewArrivalsBuilder({super.key, required this.products});
 
   final List<Product> products;
 
@@ -16,7 +16,7 @@ class BestSellerBuilder extends StatelessWidget {
       children: [
         Row(
           children: [
-            Text('Best Seller', style: TextStyles.getSize24()),
+            Text('New Arrivals', style: TextStyles.getSize24()),
             Spacer(),
             TextButton(
               onPressed: () {},
