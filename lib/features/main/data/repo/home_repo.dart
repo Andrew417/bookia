@@ -1,10 +1,26 @@
-import 'dart:nativewrappers/_internal/vm/lib/developer.dart';
+import 'dart:developer';
 
 import 'package:bookia/core/services/api/api_endpoints.dart';
 import 'package:bookia/core/services/api/dio_provider.dart';
 import 'package:bookia/features/main/data/models/book_product_response/book_product_response.dart';
+import 'package:bookia/features/main/data/models/slides_response/slides_response.dart';
 
 class HomeRepo {
+  static Future<SlidesResponse?> getSliders() async {
+    try {
+      var res = await DioProvider.get(endpoint: ApiEndpoints.sliders);
+      if (res.statusCode == 200) {
+        var data = SlidesResponse.fromJson(res.data);
+        return data;
+      } else {
+        return null;
+      }
+    } on Exception catch (e) {
+      log(e.toString());
+      return null;
+    }
+  }
+
   static Future<BookProductResponse?> getBestSellers() async {
     try {
       var res = await DioProvider.get(

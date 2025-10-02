@@ -2,12 +2,15 @@ import 'package:bookia/core/routes/navigation.dart';
 import 'package:bookia/core/routes/routes.dart';
 import 'package:bookia/core/utils/app_colors.dart';
 import 'package:bookia/core/utils/text_styles.dart';
-import 'package:bookia/features/main/presentation/widgets/book_card_UI.dart';
+import 'package:bookia/features/main/data/models/book_product_response/product.dart';
+import 'package:bookia/features/main/presentation/home/widgets/book_card_UI.dart';
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 
 class AllProducts extends StatelessWidget {
-  const AllProducts({super.key});
+  const AllProducts({super.key, required this.products});
+
+  final List<Product> products;
 
   @override
   Widget build(BuildContext context) {
@@ -35,17 +38,17 @@ class AllProducts extends StatelessWidget {
             crossAxisCount: 2,
             crossAxisSpacing: 10,
             mainAxisSpacing: 10,
-            mainAxisExtent: 280,
+            mainAxisExtent: 290,
           ),
           itemBuilder: (context, index) {
             return GestureDetector(
-              child: BookCardUI(),
+              child: BookCardUI(product: products[index], source: 'new'),
               onTap: () {
                 pushTo(context, Routes.bookDescription);
               },
             );
           },
-          itemCount: 10,
+          itemCount: products.length,
         ),
       ],
     );
